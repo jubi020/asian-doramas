@@ -104,7 +104,7 @@ app.get('/api/user/logout', auth_middleware.auth, (req, res) => {
     });
 });
 
-const port = process.env.PORT || 5001;
+const port = process.env.PORT || 5000;
 app.listen(port, () => {
     console.log("server listening on port", port);
 });
