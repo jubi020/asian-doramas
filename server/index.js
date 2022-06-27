@@ -6,11 +6,13 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const config = require('./config/key');
 const auth_middleware = require('./middleware/auth');  //authentication module
+const cors = require('cors');
 
 const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(cors());
 
 //serving static files from react app
 app.use(express.static(path.join(__dirname, 'client/build')));
@@ -40,7 +42,8 @@ app.post("/api/users/register", (req, res) => {
 });
 
 //route for logging in the user
-app.post('/api/user/login', (req, res) => {
+app.post('/api/users/login', (req, res) => {
+    res.set('Access-Control-Allow-Origin', 'http://localhost:3000');
     //find the email 
     User.findOne({email: req.body.email}, (err, user) => {
         if(err){
@@ -80,7 +83,7 @@ app.post('/api/user/login', (req, res) => {
 
 //route for authorizing the user to access protected resources 
 //auth_middleware is the module whereas auth is the function defined within it and we need to use the function.
-app.get('/api/user/auth', auth_middleware.auth, (req, res) => {
+app.get('/api/users/auth', auth_middleware.auth, (req, res) => {
 
     res.status(200).json({
         _id: req.user._id,
@@ -94,7 +97,7 @@ app.get('/api/user/auth', auth_middleware.auth, (req, res) => {
 });
 
 //route to log the user out of the application
-app.get('/api/user/logout', auth_middleware.auth, (req, res) => {
+app.get('/api/users/logout', auth_middleware.auth, (req, res) => {
     User.findOneAndUpdate({_id :req.user._id}, {token: "", tokenExp: ""}, (err, result) => {
         if(err){
             return res.json({logoutSuccess: false, error: err});

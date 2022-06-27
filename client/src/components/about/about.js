@@ -1,8 +1,15 @@
 import React from 'react';
+import Footer from "../footer/footer";
+import NavBar from '../navbar/navbar';
 
 export default function About() {
-    console.log("came in about page but then went out again");
-  return ( 
-    <div>Welcome to the about page!</div>
+    
+  return (
+    <>
+      <NavBar />
+      <h1>Welcome to the about page!</h1>
+      <Footer />
+    </> 
+    
   );
 };
