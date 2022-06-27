@@ -15,7 +15,13 @@ app.use(cookieParser());
 app.use(cors());
 
 //serving static files from react app
-app.use(express.static(path.join(__dirname, 'client/build')));
+if(process.env.NODE_ENV === 'production'){
+    app.use(express.static(path.join(__dirname, 'client/build')));
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    });
+}
+
 
 //connecting to the mongodb 
 mongoose.connect(config.mongoURL)
