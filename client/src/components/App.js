@@ -10,7 +10,7 @@ import Dashboard from "./userDashboard.js/dashboard.js";
 
 function App() {
   return (
-    <Router>
+
       <div className="App">
         <Routes>
           <Route path="/about" element={Auth(About, null)} />
@@ -20,7 +20,7 @@ function App() {
           <Route path='/dashboard' element={Auth(Dashboard, false)} />
         </Routes>
       </div>
-    </Router>
+
   );
 }
 

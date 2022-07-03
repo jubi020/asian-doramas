@@ -72,8 +72,11 @@ app.post('/api/users/login', (req, res) => {
                         if(err){
                             return res.status(400).send(err);
                         }else{
-                            return res.cookie("x-auth", user.token).status(200).json({
+                            res.cookie("w_authExp", user.tokenExp, {sameSite:'none', secure:true});
+                            return res.cookie("w_auth", user.token, {sameSite:'none', secure:true})
+                            .status(200).json({
                                 loginSuccess: true,
+                                userId: user._id,
                                 message: "welcome user"
                             });
                         }

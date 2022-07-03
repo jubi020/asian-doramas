@@ -20,7 +20,7 @@ button{
     border-radius: 5px;
     height: 50px;
     background-color: rgb(57, 55, 160);
-    color: white; 
+    color: white;
     border: 2px solid purple;
     font-size: 20px;
 }
@@ -47,4 +47,15 @@ button:hover{
    height: 30px;
    font-size: 18px;
    padding: 0 6px;
+}
+.no_account_div{
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+.input-feedback{
+    color: red;
+    height: 5px;
+    font-size: 18px;
+    margin: 3px 0;
 }

@@ -1,8 +1,8 @@
 const {User} = require("../DBmodels/user");
 
 let auth = (req, res, next) => {
-    let token = req.cookies.x_auth;
-    
+    let token = req.cookies.w_auth;
+
     //find the user according to the token
     User.findByToken(token, (err, user) => {
         if(err) throw err;
@@ -16,12 +16,12 @@ let auth = (req, res, next) => {
             else{
                 req.token = token;
                 req.user = user;
-                next();   //this executes the code that is written after the middleware wherever the middleware has been called 
+                next();   //this executes the code that is written after the middleware wherever the middleware has been called
             }
         }
 
-    
-        
+
+
 
     });
 };

@@ -1,6 +1,19 @@
-import {Container, Nav, Navbar} from "react-bootstrap";
+import {Container, Nav, Navbar, Form} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.css';
+import React, {useState} from 'react';
+import RightMenu from "./sections/rightMenu";
+
+
 export default function NavBar(){
+
+    const [visible, setVisible] = useState(false);
+    const showDrawer = () => {
+        setVisible(true);
+    };
+    const onClose = () => {
+        setVisible(false);
+    };
+
     return(
         <>
             <Navbar collapseOnSelect expand='sm' bg='dark' variant="dark">
@@ -12,6 +25,7 @@ export default function NavBar(){
                             <Nav.Link href="/about" className="nav-el">About</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
+                    <Form inline='true' className="mx-3">{RightMenu()}</Form>
                 </Container>
             </Navbar>
         </>

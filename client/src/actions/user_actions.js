@@ -1,3 +1,5 @@
+//defining the redux actions(actions are the ones that define what needs to be changed in the state and what is the type of action)
+
 import axios from "axios";
 import {
     Register_user,
@@ -12,6 +14,7 @@ export function registerUser(dataToSubmit){
     const req = axios.post(`${user_server}/register`, dataToSubmit)
     .then(res => res.data);
 
+    //defining the action of type=Register_user
     return{
         type: Register_user,
         payload: req
@@ -31,7 +34,7 @@ export function loginUser(dataToSubmit){
 export function auth(){
     const req = axios.get(`${user_server}/auth`)
     .then(res => res.data);
-
+// console.log("auth is" ,req);
     return {
         type: Auth_user,
         payload: req

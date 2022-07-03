@@ -11,8 +11,6 @@ import { useNavigate } from 'react-router-dom';
 
 function Login(props) {
 
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
     const [formErrorMessage ,setFormErrorMessage] = useState('');
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -40,8 +38,10 @@ function Login(props) {
                             dispatch(loginUser(dataToSubmit))
                             .then(res => {
                                 if(res.payload.loginSuccess){
-                                    // console.log(props);
-                                    navigate("/dashboard");
+                                  window.localStorage.setItem('userId', res.payload.userId);
+
+                                    console.log("response of loginuser in login.js", res.payload);
+                                    navigate("/");
                                 }else{
                                     setFormErrorMessage('Check your password and email again')
                                 }
@@ -66,11 +66,11 @@ function Login(props) {
                                 <Form onSubmit={handleSubmit}>
                                     <Form.Group id='email' className='form'>
                                         <Form.Label>Email</Form.Label>
-                                        <Form.Control type='email' 
+                                        <Form.Control type='email'
                                         className={`form-el ${errors.email && touched.email ? 'text-input error' : 'text-input'} `}
-                                        name='email' 
-                                        value={values.email} 
-                                        onChange={handleChange} 
+                                        name='email'
+                                        value={values.email}
+                                        onChange={handleChange}
                                         onBlur={handleBlur}
                                         required />
                                         {errors.email && touched.email && (<div className='input-feedback'>{errors.email}</div>)}
@@ -78,17 +78,21 @@ function Login(props) {
                                     <br />
                                     <Form.Group id='password' className='form'>
                                         <Form.Label>Password</Form.Label>
-                                        <Form.Control type='password' 
-                                        className={`form-el ${errors.password && touched.password ? 'text-input error':'text-input'}`} 
-                                        name='password' 
-                                        value={values.password} 
-                                        onChange={handleChange} 
+                                        <Form.Control type='password'
+                                        className={`form-el ${errors.password && touched.password ? 'text-input error':'text-input'}`}
+                                        name='password'
+                                        value={values.password}
+                                        onChange={handleChange}
                                         onBlur={handleBlur}
                                         required />
                                         {errors.password && touched.password && <div className='input-feedback'>{errors.password}</div>}
                                     </Form.Group>
                                     <br />
                                     <button className='w-100 signup--button' type='submit'>Login</button>
+
+                                    <div className='no_account_div'>
+                                      <p>Don't have an account! <a href="/register">Signup</a></p>
+                                    </div>
                                 </Form>
                             </div>
                         </div>
