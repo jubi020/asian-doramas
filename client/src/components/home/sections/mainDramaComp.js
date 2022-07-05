@@ -13,9 +13,9 @@ return (
         backgroundSize: '100%, cover',
         position: 'relative'
     }}>
-        <div style={{position:'absolute', maxWidth: '500px', bottom:'2rem', marginLeft: '2rem'}}>
-            <h2 style={{color: 'pink'}}>{title}</h2>
-            <p style={{color:'pink', fontsize:'1rem'}}>{text}</p>
+        <div style={{position:'absolute', maxWidth: '700px', bottom:'2rem', marginLeft: '2rem'}}>
+            <h3 style={{color: 'rgb(192, 117, 195)'}}><b>{title}</b></h3>
+            <p style={{color:'rgb(192, 117, 195)', fontsize:'1rem'}}>{text}</p>
         </div>
     </div>
 

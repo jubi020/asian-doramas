@@ -1,8 +1,8 @@
 import React from 'react';
 import {Form} from 'react-bootstrap';
-import "../login/login.css";
+import "../views/login/login.css";
 import {useState} from 'react';
-import Footer from "../footer/footer";
+import Footer from "../views/footer/footer";
 import * as Yup from 'yup';
 import { registerUser } from '../../actions/user_actions';
 import { useDispatch } from 'react-redux';

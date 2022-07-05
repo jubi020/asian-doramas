@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {Form} from 'react-bootstrap';
-import "../login/login.css";
+import "./login.css";
 import Footer from "../footer/footer";
-import {loginUser} from "../../actions/user_actions";
+import {loginUser} from "../../../actions/user_actions";
 import * as Yup from 'yup';
 import {Formik} from 'formik';
 import {useDispatch} from 'react-redux';

@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import NavBar from '../navbar/navbar';
-import Footer from '../footer/footer';
+import Footer from '../views/footer/footer';
 import {DISCOVER_API_URL, baseImageURL} from '../config.js';
 import MainDramaComp from './sections/mainDramaComp';
-import GridCard from './sections/gridCard';
-import { Container, Row, Col } from 'react-bootstrap';
+import GridCard from './sections/gridCard/gridCard';
+import { Container, Row} from 'react-bootstrap';
+// import{Row} from 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -45,9 +46,25 @@ export default function Home() {
           <h2>More Asian Dramas</h2>
           <hr />
           {/* grid card making */}
-          <div>
-            <GridCard dramas={dramas}/>
-          </div>
+          <Container style={{backgroundColor:'white'}}>
+            <Row>
+              {dramas && dramas.map( (drama, index) => {
+                return (
+                  
+                  <React.Fragment key={index}>
+                    <GridCard 
+                    dramaTitle={drama.name}
+                    dramaImgUrl={`${baseImageURL}/w500/${drama.poster_path}`}
+                    dramaId={drama.id}
+                    dramaRating={drama.vote_average}
+                    dramaOriginalName={drama.original_name}
+                    />
+                  </React.Fragment>
+                  
+                )
+              } )}
+            </Row>
+          </Container>
           
 
           {/* load more button */}

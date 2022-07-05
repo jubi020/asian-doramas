@@ -1,0 +1,8 @@
+a:hover{
+    transform: scale(2);
+}
+a{
+    text-decoration: none;
+    color:rgb(192, 117, 195);
+    cursor: auto;
+}
