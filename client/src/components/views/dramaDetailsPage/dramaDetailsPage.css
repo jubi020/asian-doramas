@@ -1,0 +1,53 @@
+.backdrop{
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    -webkit-filter: brightness(28%);
+    filter: brightness(22%);
+}
+.title-data{
+    filter: brightness(100%);
+    margin: 1rem auto;
+    color: white;
+    /* width: 50%; */
+}
+.drama-description{
+    font-size: 1.3rem;
+}
+.title-data{
+   
+    margin: 25px;
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-content: center;
+    flex-direction: row;
+}
+.title-poster{
+    width:50%;
+}
+.title-content{
+    width:50%;
+}
+.drama-image{
+    width: 250px;
+    height: 350px;
+}
+@media screen and (max-width: 780px){
+    .title-data{
+        display: flex;
+        /* flex-direction: column; */
+        margin: 20px;
+        justify-content: center;
+    }
+    .title-poster{
+        width: auto;
+    }
+    .title-content{
+        margin-top: 30px;
+        width: 100%;
+    }
+}

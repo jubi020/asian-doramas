@@ -1,10 +1,9 @@
 import React from 'react';
 import {Form} from 'react-bootstrap';
-import "../views/login/login.css";
-import {useState} from 'react';
-import Footer from "../views/footer/footer";
+import "../login/login.css";
+import Footer from "../footer/footer";
 import * as Yup from 'yup';
-import { registerUser } from '../../actions/user_actions';
+import { registerUser } from '../../../actions/user_actions';
 import { useDispatch } from 'react-redux';
 import {Formik} from 'formik';
 import {useNavigate} from 'react-router-dom';

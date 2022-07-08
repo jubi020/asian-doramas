@@ -12,29 +12,44 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 export default function Home() {
 
   const [dramas, setDramas] = useState([]);
-  const [mainDrama, setMainDrama] = useState({});
+  const [mainDrama, setMainDrama] = useState(null);
+  const [currentPage, setCurrentPage] = useState(0);
   const [loading, setLoading] = useState(true);
 
   const APIendpoint = `${DISCOVER_API_URL}&language=en-US&with_original_language=ko&page=1`;
 
   useEffect( () => {
-      fetch(APIendpoint)
+      fetchDramas(APIendpoint)   //using the custom made fetch function to fetch the dramas 
+    } , [])
+  
+    //we need to fetch the dramas again and again hence made a function that can be used when required
+  const fetchDramas = (endpoint) => {
+    fetch(endpoint)
       .then(res => res.json())
       .then((data) => {
         // console.log('data.results[0] = ',data.results[0]);
-        setDramas(data.results);
-        setMainDrama(data.results[0])
+        setDramas([...dramas, ...data.results]);
+        setMainDrama(mainDrama || data.results[0]);
+        setCurrentPage(data.page);
       }, setLoading(false))
       .catch(err => console.error('Error:', err));
-    } , [])
-  
+  }
+
+  const handleLoadMoreButton = () => {
+    console.log('button pressed');
+    let endpoint = '';
+    setLoading(true);
+    endpoint = `${DISCOVER_API_URL}&language=en-US&with_original_language=ko&page=${currentPage + 1}`;
+    fetchDramas(endpoint);   //using the custom made fetchDrama function to fetch the updated set of dramas
+  }
+
   return (
     <div>
       <NavBar />
-      <div style={{width:'100%', margin:'0'}}>
+      <div style={{width:'100%', margin:'0'}} className={'mainDrama'}>
 
         {/* cover drama image and info component */}
-        {mainDrama.backdrop_path && 
+        {mainDrama && mainDrama.backdrop_path && 
           <MainDramaComp imageURL={`${baseImageURL}/w1280/${mainDrama.backdrop_path}`}
           title={mainDrama.name} 
           text={mainDrama.overview}
@@ -42,7 +57,7 @@ export default function Home() {
         }
         
         {/* all the dramas */}
-        <div style={{width:'85%', margin:'1rem auto'}}>
+        <div style={{width:'85%', margin:'1rem auto'}} className={'all-dramas'}>
           <h2>More Asian Dramas</h2>
           <hr />
           {/* grid card making */}
@@ -68,8 +83,8 @@ export default function Home() {
           
 
           {/* load more button */}
-          <div style={{display:'flex', justifyContent:'center'}}>
-          <button>Load more</button>
+          <div style={{display:'flex', justifyContent:'center'}} className={'load-more dramas'}>
+          <button onClick={handleLoadMoreButton}>Load more</button>
           </div>
           
 

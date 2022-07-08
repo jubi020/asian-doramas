@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import About from "./views/about/about.js";
 import Home from "./home/home.js";
 import Login from "./views/login/login.js";
-import Register from "./registerUser/register.js";
+import Register from "./views/registerUser/register.js";
 import Auth from '../authenticationCheck/authCheck';
 import Dashboard from "./views/userDashboard.js/dashboard.js";
 import DramaDetailsPage from './views/dramaDetailsPage/dramaDetailsPage';
