@@ -1,4 +1,4 @@
-export const API_KEY = '7e10aae68988f9a53b490ed984e5c2e2';
+export const API_KEY = `${process.env.REACT_APP_TMDB_API_KEY}`;
 
 export const API_URL = 'https://api.themoviedb.org/3/tv';
 
