@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 const { User } = require('./DBmodels/user'); //fetches the User model
+const {Favourite} = require('./DBmodels/favourite'); //fetches the Favourite model
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const config = require('./config/key');
@@ -114,6 +115,34 @@ app.get('/api/users/logout', auth_middleware.auth, (req, res) => {
             return res.status(200).send({success: true});
         }
     });
+});
+
+app.post('/api/favourite/favouriteNumber', auth_middleware.auth, (req, res) => {
+    //find the favourite info by the drama ID
+    Favourite.find({'dramaId' : req.body.dramaId})
+    .exec( (error, favourite) => {
+        if(error){
+            return res.status(400).send(error);
+        }else{
+            return res.status(200).json({success: true, favouriteNumber: favourite.length});
+        }
+    } )
+});
+
+app.post('/api/favourite/isFavourited', auth_middleware.auth, (req, res) => {
+    //find the drama info using the userId and the dramaID
+    Favourite.find({'dramaId': req.body.dramaId, 'userFrom': req.body.userFrom})
+    .exec( (error, favourite) => {
+        if(error){
+            return res.status(400).send(error);
+        }else{
+            let result = false;  
+            if(favourite.length !== 0){
+                result = true;  //drama has already been favourited
+            }
+            return res.status(200),json({success: true, isFavourited: result});
+        }
+    } )
 });
 
 const port = process.env.PORT || 5000;

@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import {API_KEY, baseImageURL} from '../../config.js';
 import NavBar from '../../navbar/navbar.js';
 import '../dramaDetailsPage/dramaDetailsPage.css';
+import Favourite from './sections/favourite.js';
+
 
 export default function DramaDetailsPage(props) {
 
@@ -20,9 +22,7 @@ export default function DramaDetailsPage(props) {
         });
     }, []);
 
-    function handleFavourite(){
-        console.log('favourite button pressed');
-    }
+    
 
     const dramaBackdropUrl = dramaDetails && `${baseImageURL}/w780/${dramaDetails.backdrop_path}`;
     const dramaPosterUrl = dramaDetails && `${baseImageURL}/w500/${dramaDetails.poster_path}`;
@@ -70,7 +70,12 @@ export default function DramaDetailsPage(props) {
                     </div>
                     <div className='drama-description mt-3'>{dramaDesc}</div>
                     <div className='favorite mt-4'>
-                        <button onClick={handleFavourite}>Favourite</button>
+                        <Favourite 
+                            userFrom={localStorage.getItem('userId')}
+                            dramaId={dramaId}
+                            dramaTitle={dramaTitle}
+                            dramaImage={dramaPosterUrl}
+                        />
                     </div>
                 </div>
             </div>

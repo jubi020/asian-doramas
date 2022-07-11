@@ -1,2 +1,0 @@
-node: cd client && npm install && node index/prod.js
-python: cd server && pip install -r requirements.txt && gunicorn app:app -b 0.0.0.0:1337 
