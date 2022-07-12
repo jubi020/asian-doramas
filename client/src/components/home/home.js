@@ -7,9 +7,13 @@ import GridCard from './sections/gridCard/gridCard';
 import { Container, Row} from 'react-bootstrap';
 // import{Row} from 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import { useSelector } from 'react-redux';
+import { stat } from 'fs';
 
 export default function Home() {
+
+  const user = useSelector(state => state.user);
+  
 
   const [dramas, setDramas] = useState([]);
   const [mainDrama, setMainDrama] = useState(null);
@@ -65,7 +69,6 @@ export default function Home() {
             <Row>
               {dramas && dramas.map( (drama, index) => {
                 return (
-                  
                   <React.Fragment key={index}>
                     <GridCard 
                     dramaTitle={drama.name}
@@ -74,8 +77,7 @@ export default function Home() {
                     dramaRating={drama.vote_average}
                     dramaOriginalName={drama.original_name}
                     />
-                  </React.Fragment>
-                  
+                  </React.Fragment> 
                 )
               } )}
             </Row>
@@ -86,9 +88,6 @@ export default function Home() {
           <div style={{display:'flex', justifyContent:'center'}} className={'load-more dramas'}>
           <button onClick={handleLoadMoreButton}>Load more</button>
           </div>
-          
-
-
         </div>
 
       </div>

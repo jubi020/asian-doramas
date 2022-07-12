@@ -20,6 +20,9 @@ const favouriteSchema = new mongoose.Schema({
     },
     dramaImage:{
         type:String
+    },
+    dramaOverview:{
+        type:String 
     }
 });
 

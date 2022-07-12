@@ -117,32 +117,65 @@ app.get('/api/users/logout', auth_middleware.auth, (req, res) => {
     });
 });
 
-app.post('/api/favourite/favouriteNumber', auth_middleware.auth, (req, res) => {
+app.post('/api/fav/favNumber', auth_middleware.auth, (req, res) => {
+    console.log('cant get even inside here')
     //find the favourite info by the drama ID
-    Favourite.find({'dramaId' : req.body.dramaId})
-    .exec( (error, favourite) => {
-        if(error){
-            return res.status(400).send(error);
-        }else{
-            return res.status(200).json({success: true, favouriteNumber: favourite.length});
-        }
-    } )
+    Favourite.find({'dramaId' : req.body.dramaId}, function(err, fav){
+         if(err){
+             return res.status(400).send(err);
+         }else{
+             return res.status(200).json({success: true, favouriteNumber: fav.length});
+         }
+     });
 });
 
-app.post('/api/favourite/isFavourited', auth_middleware.auth, (req, res) => {
+app.post('/api/fav/isFav', auth_middleware.auth, (req, res) => {
     //find the drama info using the userId and the dramaID
-    Favourite.find({'dramaId': req.body.dramaId, 'userFrom': req.body.userFrom})
-    .exec( (error, favourite) => {
-        if(error){
-            return res.status(400).send(error);
-        }else{
-            let result = false;  
-            if(favourite.length !== 0){
-                result = true;  //drama has already been favourited
+    Favourite.find({'dramaId': req.body.dramaId, 'userFrom': req.body.userFrom}, function(err, fav){
+            if(err){
+                 return res.status(400).send(err);
+            }else{
+                let result = false;  
+                if(fav.length !== 0){
+                     result = true;  //drama has already been favourited
+                }
+                return res.status(200).json({success: true, isFavourited: result});
             }
-            return res.status(200),json({success: true, isFavourited: result});
+     });
+    // return res.status(200)
+});
+
+app.post('/api/fav/addToFav', auth_middleware.auth, (req, res) => {
+
+    const favList = new Favourite(req.body);
+    favList.save((err, favData) => {
+        if(err){
+            return res.json({success:false, err});
+        }else{
+            return res.status(200).json({success:true});
         }
-    } )
+    });
+});
+
+app.post('/api/fav/removeFromFav', auth_middleware.auth, (req, res) => {
+
+    Favourite.findOneAndDelete({'dramaId': req.body.dramaId, 'userFrom': req.body.userFrom}, function(err, favList){
+        if(err){
+            return res.status(400).json({success: false, err});
+        }else{
+            return res.status(200).json({success:true, favList});
+        }
+    })
+});
+
+app.post('/api/fav/getFavDramas', auth_middleware.auth, (req, res) => {
+    Favourite.find({'userFrom': req.body.userFrom}, function(err, favList){
+        if(err){
+            return res.status(400).json({success: false, err});
+        }else{
+            return res.status(200).json({success: true, favList});
+        }
+    })
 });
 
 const port = process.env.PORT || 5000;

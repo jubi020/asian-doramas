@@ -74,7 +74,8 @@ export default function DramaDetailsPage(props) {
                             userFrom={localStorage.getItem('userId')}
                             dramaId={dramaId}
                             dramaTitle={dramaTitle}
-                            dramaImage={dramaPosterUrl}
+                            dramaImage={dramaDetails.poster_path}
+                            dramaOverview={dramaDesc}
                         />
                     </div>
                 </div>

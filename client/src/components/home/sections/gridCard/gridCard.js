@@ -2,6 +2,7 @@ import React from 'react';
 import { Col, Container, Row, Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "../gridCard/gridCard.css";
+import {Link} from 'react-router-dom';
 
 
 export default function GridCard(props) {
@@ -17,7 +18,7 @@ export default function GridCard(props) {
             // backgroundColor:'white',
             // background: `linear-gradient(to bottom, rgba(0,0,0,0) 39%, rgba(0,0,0,0) 41%, rgba(0,0,0,0.65) 100%), url(${dramaImgUrl}), #1c1c1c`
             }}>
-              <a href={`/drama/${dramaId}`}>
+              <Link to={`/drama/${dramaId}`}>
               <Card  bg='dark' style={{width: '15rem'}}>
               <Card.Img variant="top" src={`${dramaImgUrl}`} alt={'drama poster'}/>
                 <Card.Body>
@@ -30,7 +31,7 @@ export default function GridCard(props) {
                   </Card.Text>
                 </Card.Body>
               </Card>
-              </a>
+              </Link>
             </div>
           
           <br />

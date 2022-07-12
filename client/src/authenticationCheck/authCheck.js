@@ -4,9 +4,10 @@ import { useSelector, useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 
 export default function (SpecificComponent, option, adminRoute=null){
+    // console.log(option);
   const navigate = useNavigate();
     function AuthenticationCheck(props){
-
+        // console.log(props);
         let user = useSelector(state => state.user);
         const dispatch = useDispatch();
 
@@ -14,8 +15,7 @@ export default function (SpecificComponent, option, adminRoute=null){
             dispatch( auth() ).then(res => {
                 //user is not logged in
                 if(!res.payload.isAuth){
-                //   console.log(res);
-                //   console.log(option);
+                //   console.log("i am inside not logged in part");
                     if(option){
                         // props.history.push("/login");
                         
@@ -25,13 +25,15 @@ export default function (SpecificComponent, option, adminRoute=null){
                 //user is logged in
                 else{
                     //supposed to be Admin page, but a non-admin person wants to access it
-                    // console.log("option in authcheck is", option);
-                    if(adminRoute && !res.payload.isAdmin){
+                    // console.log("i am inside the logged in part");
+                    if(adminRoute!==null && !res.payload.isAdmin){
+                        console.log("i am inside the first if");
                         navigate('/');
                     }else{
-                        if(option === false){
-                            navigate('/');
-                        }
+                        // if(option === false){
+                        //     console.log('i am inside the else of logged in paart');
+                        //     navigate('/');
+                        // }
                     }
                 }
             })

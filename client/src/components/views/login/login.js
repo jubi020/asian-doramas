@@ -40,7 +40,7 @@ function Login(props) {
                                 if(res.payload.loginSuccess){
                                   window.localStorage.setItem('userId', res.payload.userId);
 
-                                    console.log("response of loginuser in login.js", res.payload);
+                                    // console.log("response of loginuser in login.js", res.payload);
                                     navigate("/");
                                 }else{
                                     setFormErrorMessage('Check your password and email again')
@@ -48,7 +48,7 @@ function Login(props) {
                             }).catch(err => {
                                 setFormErrorMessage('Email or password do not match. Please try again!')
                                 setTimeout( () => {
-                                    setFormErrorMessage("")}, 3000);
+                                    setFormErrorMessage("")}, 5000);
                                 });
                                 setSubmitting(false);
                             }, 500);
