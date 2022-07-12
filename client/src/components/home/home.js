@@ -1,14 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import NavBar from '../navbar/navbar';
-import Footer from '../views/footer/footer';
+import Footer from '../footer/footer';
 import {DISCOVER_API_URL, baseImageURL} from '../config.js';
 import MainDramaComp from './sections/mainDramaComp';
 import GridCard from './sections/gridCard/gridCard';
 import { Container, Row} from 'react-bootstrap';
-// import{Row} from 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useSelector } from 'react-redux';
-import { stat } from 'fs';
 
 export default function Home() {
 

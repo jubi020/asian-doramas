@@ -31,7 +31,7 @@ function Footer() {
     
 
      */}
-    <div className="text-center p-3" style={{backgroundColor: "rgba(0, 0, 0, 0.5)"}}>
+    <div className="text-center p-3" style={{backgroundColor: "rgba(0, 0, 0, 0.5)", height:'5.5rem'}}>
       © 2022 Copyright:
       <p className="text-white">Jubi Katiyar</p>
     </div>

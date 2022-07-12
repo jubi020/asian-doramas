@@ -4,8 +4,12 @@ import { MDBCard, MDBCardTitle, MDBCardText, MDBCardBody, MDBCardImage, MDBRow, 
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import { baseImageURL } from '../../config';
+import { useSelector } from 'react-redux';
 
 export default function FavDramaPage() {
+
+    const user = useSelector(state => state.user);
+    // console.log(user);
 
     const dataToSend = {userFrom: localStorage.getItem('userId')};
     const [favDramaList, setFavDramaList] = useState([]);
@@ -16,7 +20,11 @@ export default function FavDramaPage() {
             if(res.data.success){
                 setFavDramaList(res.data.favList);
             }else{
-                alert('failed to fetch the favourite dramas');
+                if(user && user.userData && user.userData.isAuth){
+                    alert('failed to fetch the favourite dramas');
+                }else{
+                    console.log('failed to fetch the favourite dramas');
+                }
             }
         });
     }
@@ -37,7 +45,11 @@ export default function FavDramaPage() {
             if(res.data.success){
                 fetchFavDrama();
             }else{
-                alert('failed to remove the drama from favourites');
+                if(user && user.userData && user.userData.isAuth)
+                    alert('failed to remove the drama from favourites');
+                else{
+                    console.log('failed to remove the drama from favourite list');
+                }
             }
         })
 

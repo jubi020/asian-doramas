@@ -1,27 +1,25 @@
-import React, {useState} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import axios from 'axios';
 import { useSelector} from "react-redux";
 import { useNavigate} from 'react-router-dom';
 import {Button, ButtonGroup} from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 
 
-function RightMenu(props){
-
-    // const [isAuth, setIsAuth] = useState(false);
+function RightMenu(){
 
     let user = useSelector(state => state.user);
-    // setIsAuth(user.userData && !user.userData.isAuth);
-    // console.log("user in rightmenu is ", user);
+
     const user_server = '/api/users';
     const navigate = useNavigate();
 
     const logoutHandler = () => {
         axios.get(`${user_server}/logout`).then(res => {
             if(res.status === 200){
-              window.localStorage.removeItem('userId');
+                window.localStorage.removeItem('userId');
             //   setIsAuth(false);
-                window.location.reload(true);
+                // window.location.reload(true);
                 navigate('/');
             }else{
                 alert('logout failed');
@@ -29,18 +27,26 @@ function RightMenu(props){
         });
     };
 
-    if(user.userData && !user.userData.isAuth){
+    if(window.localStorage.getItem('userId') == null){
         return (
             <>
-                <Button type='button' className='btn btn-success'><a href='/register' style={{textDecoration:"none", color:"black"}}>Sign Up</a></Button>
-                <Button type='button' className='btn btn-success' style={{marginLeft:'10px'}}><a href='/login' style={{textDecoration:"none", color:"black"}}>Log in</a></Button>
+                <Link to='/register'>
+                    <Button variant='primary'>Sign Up</Button>
+                </Link>
+                <Link to='/login'>
+                <Button variant='primary' style={{marginLeft:'10px'}}>Log In</Button>
+                </Link>
+                
             </>
         );
     }
     else{
         return(
             <>
-                <Button onClick={logoutHandler}>Log out</Button>
+                <Button variant="primary" 
+                onClick={logoutHandler}>
+                Logout
+                </Button>
             </>
         );
     }

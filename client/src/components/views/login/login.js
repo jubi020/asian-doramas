@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Form} from 'react-bootstrap';
 import "./login.css";
-import Footer from "../footer/footer";
+import Footer from "../../footer/footer";
 import {loginUser} from "../../../actions/user_actions";
 import * as Yup from 'yup';
 import {Formik} from 'formik';

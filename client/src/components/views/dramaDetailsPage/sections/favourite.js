@@ -25,7 +25,11 @@ export default function Favourite(props) {
             if(res.data.success){
                 setFavouriteNumber(res.data.favouriteNumber);
             }else{
-                alert('Fetching how many users favourited this drama == failed');
+                if(user.userData && user.userData.isAuth)
+                    alert('Fetching how many users favourited this drama == failed');
+                else{
+                    console.log('fetching no of users who favourited this drama failed');
+                }
             }
         })
 
@@ -34,7 +38,11 @@ export default function Favourite(props) {
             if(res.data.success){
                 setIsFavourited(res.data.isFavourited);
             }else{
-                alert('post req failed to find whether the movie is favourited or not');
+                if(user.userData && user.userData.isAuth)
+                    alert('post req failed to find whether the drama is favourited or not');
+                else{
+                    console.log('post req failed to find whether the drama is favourited or not');
+                }
             }
         })
       
@@ -55,7 +63,11 @@ export default function Favourite(props) {
                     setFavouriteNumber(favouriteNumber - 1);
                     setIsFavourited(!isFavourited);
                 }else{
-                    alert('failed to remove the drama from favourites');
+                    if(user.userData && user.userData.isAuth)
+                        alert('failed to remove the drama from favourites');
+                    else{
+                        console.log('failed to remove the drama from favourites');
+                    }
                 }
             })
         }else{
@@ -67,7 +79,11 @@ export default function Favourite(props) {
                     setFavouriteNumber(favouriteNumber + 1);
                     setIsFavourited(!isFavourited);
                 }else{
-                    alert('failed to add the drama to the favourites list');
+                    if(user.userData && user.userData.isAuth)
+                        alert('failed to add the drama to the favourites list');
+                    else{
+                        console.log('failed to add the drama to the favourites list');
+                    }
                 }
             })
 
