@@ -1,12 +1,12 @@
 import React from "react";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
-import About from "./views/about/about.js";
-import Home from "./home/home.js";
-import Login from "./views/login/login.js";
-import Register from "./views/registerUser/register.js";
-import Auth from '../authenticationCheck/authCheck';
-import DramaDetailsPage from './views/dramaDetailsPage/dramaDetailsPage';
-import FavDramaPage from "./views/favDramaPage/favDramaPage.js";
+import About from "./components/views/about/about.js";
+import Home from "./components/home/home.js";
+import Login from "./components/views/login/login.js";
+import Register from "./components/views/registerUser/register.js";
+import Auth from './authenticationCheck/authCheck';
+import DramaDetailsPage from './components/views/dramaDetailsPage/dramaDetailsPage';
+import FavDramaPage from "./components/views/favDramaPage/favDramaPage.js";
 
 function App() {
   return (

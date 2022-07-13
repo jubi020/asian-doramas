@@ -3,6 +3,9 @@
     "version": "1.0.0",
     "main": "",
     "scripts": {
+        "devstart": "nodemon server/index.js",
+        "frontend": "npm run start --prefix client",
+        "dev": "concurrently \"npm run devstart\" \"npm run frontend\"",
         "start": "npm start --prefix server",
         "install-client": "cd client && npm install && npm run build && cd ..",
         "install-server": "cd server && npm install && cd .. ",
