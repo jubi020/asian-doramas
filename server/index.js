@@ -29,7 +29,7 @@ mongoose.connect(config.mongoURL)
 .then(() => console.log('MongoDB Connected...'))
 .catch(err => console.log(err));
 
-app.get("/", (req, res) => {
+app.get("/preload", (req, res) => {
     res.sendFile(path.join(__dirname + '/../client/public/index.html'));
 });
 
