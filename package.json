@@ -10,5 +10,9 @@
         "install-client": "cd client && npm install && npm run build && cd ..",
         "install-server": "cd server && npm install && cd .. ",
         "heroku-postbuild": "npm run install-client && npm run install-server"
+    },
+    "engines": {
+        "node": "14.18.3",
+        "npm": "8.3.1"
     }
 }
