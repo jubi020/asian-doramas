@@ -44,7 +44,7 @@ export default function Home() {
     endpoint = `${DISCOVER_API_URL}&language=en-US&with_original_language=ko&page=${currentPage + 1}`;
     fetchDramas(endpoint);   //using the custom made fetchDrama function to fetch the updated set of dramas
   }
-
+  console.log('inside the home page');
   return (
     <div>
       <NavBar />
