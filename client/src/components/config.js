@@ -6,18 +6,4 @@ export const DISCOVER_API_URL = `https://api.themoviedb.org/3/discover/tv?api_ke
 
 export const baseImageURL = 'https://image.tmdb.org/t/p';
 
-
-
-<<<<<<< HEAD
-/* correct one for fetching asian dramas
-https://api.themoviedb.org/3/discover/tv?api_key=7e10aae68988f9a53b490ed984e5c2e2&include_null_first_air_dates=false&
-language=en-US&with_original_language=ko&page=1
-*/
-
-
-/* trial one 
-https://api.themoviedb.org/3/discover/tv?api_key=7e10aae68988f9a53b490ed984e5c2e2&
-language=en-US&sort_by=popularity.desc&page=1&include_null_first_air_dates=false&with_original_language=ko
-*/
-=======
->>>>>>> 7710ff7e2352f88b29fca343342e2479efde50cb
+ 
