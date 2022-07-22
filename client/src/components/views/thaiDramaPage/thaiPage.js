@@ -1,14 +1,14 @@
 import React, {useEffect, useState} from 'react';
-import NavBar from '../navbar/navbar';
-import Footer from '../footer/footer';
-import {DISCOVER_API_URL, baseImageURL} from '../config.js';
-import MainDramaComp from './sections/mainDramaComp';
-import GridCard from './sections/gridCard/gridCard';
+import NavBar from '../../navbar/navbar';
+import Footer from '../../footer/footer';
+import {DISCOVER_API_URL, baseImageURL} from '../../config';
+import MainDramaComp from '../../home/sections/mainDramaComp';
+import GridCard from '../../home/sections/gridCard/gridCard';
 import { Container, Row} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useSelector } from 'react-redux';
 
-export default function Home() {
+export default function ThaiPage() {
 
   const user = useSelector(state => state.user);
   
@@ -18,7 +18,7 @@ export default function Home() {
   const [currentPage, setCurrentPage] = useState(0);
   const [loading, setLoading] = useState(true);
 
-  const APIendpoint = `${DISCOVER_API_URL}&language=en-US&with_original_language=ko&page=1`;
+  const APIendpoint = `${DISCOVER_API_URL}&language=en-US&with_original_language=th&page=1`;
 
   useEffect( () => {
       fetchDramas(APIendpoint)   //using the custom made fetch function to fetch the dramas 
@@ -41,7 +41,7 @@ export default function Home() {
     console.log('button pressed');
     let endpoint = '';
     setLoading(true);
-    endpoint = `${DISCOVER_API_URL}&language=en-US&with_original_language=ko&page=${currentPage + 1}`;
+    endpoint = `${DISCOVER_API_URL}&language=en-US&with_original_language=th&page=${currentPage + 1}`;
     fetchDramas(endpoint);   //using the custom made fetchDrama function to fetch the updated set of dramas
   }
 
@@ -66,18 +66,19 @@ export default function Home() {
           <Container style={{backgroundColor:'white'}}>
             <Row>
               {dramas && dramas.map( (drama, index) => {
-                return (
-                  <React.Fragment key={index}>
-                    <GridCard 
-                    dramaTitle={drama.name}
-                    dramaImgUrl={`${baseImageURL}/w500/${drama.poster_path}`}
-                    dramaId={drama.id}
-                    dramaRating={drama.vote_average}
-                    dramaOriginalName={drama.original_name}
-                    />
-                  </React.Fragment> 
-                )
-              } )}
+                    return (
+                    <React.Fragment key={index}>
+                        {drama.overview && drama.backdrop_path && <GridCard 
+                        dramaTitle={drama.name}
+                        dramaImgUrl={`${baseImageURL}/w500/${drama.poster_path}`}
+                        dramaId={drama.id}
+                        dramaRating={drama.vote_average}
+                        dramaOriginalName={drama.original_name}
+                        />}
+                    </React.Fragment> 
+                    )
+                } 
+              )}
             </Row>
           </Container>
           
